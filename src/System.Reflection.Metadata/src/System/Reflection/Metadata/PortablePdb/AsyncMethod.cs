@@ -26,14 +26,6 @@ namespace System.Reflection.Metadata
             get { return AsyncMethodHandle.FromRowId(_rowId); }
         }
 
-        public MethodDefinitionHandle Method
-        {
-            get
-            {
-                return _reader.AsyncMethodTable.GetMethod(Handle);
-            }
-        }
-
         public MethodDefinitionHandle KickoffMethod
         {
             get

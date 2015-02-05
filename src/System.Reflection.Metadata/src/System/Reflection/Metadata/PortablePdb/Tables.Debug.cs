@@ -283,7 +283,6 @@ namespace System.Reflection.Metadata.Ecma335
         private readonly bool IsMethodRefSizeSmall;
         private readonly bool IsBlobHeapRefSizeSmall;
 
-        private readonly int MethodOffset;
         private readonly int KickoffMethodOffset;
         private readonly int CatchHandlerOffsetOffset;
         private readonly int AwaitsOffset;
@@ -303,19 +302,12 @@ namespace System.Reflection.Metadata.Ecma335
             this.IsMethodRefSizeSmall = methodRefSize == 2;
             this.IsBlobHeapRefSizeSmall = blobHeapRefSize == 2;
 
-            this.MethodOffset = 0;
-            this.KickoffMethodOffset = this.MethodOffset + methodRefSize;
+            this.KickoffMethodOffset = 0;
             this.CatchHandlerOffsetOffset = this.KickoffMethodOffset + methodRefSize;
             this.AwaitsOffset = this.CatchHandlerOffsetOffset + sizeof(uint);
             this.RowSize = this.AwaitsOffset + blobHeapRefSize;
 
             this.Block = containingBlock.GetMemoryBlockAt(containingBlockOffset, (int)(this.RowSize * numberOfRows));
-        }
-
-        internal MethodDefinitionHandle GetMethod(AsyncMethodHandle handle)
-        {
-            int rowOffset = (int)(handle.RowId - 1) * this.RowSize;
-            return MethodDefinitionHandle.FromRowId(this.Block.PeekReference(rowOffset + this.MethodOffset, this.IsMethodRefSizeSmall));
         }
 
         internal MethodDefinitionHandle GetKickoffMethod(AsyncMethodHandle handle)
