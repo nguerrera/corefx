@@ -1024,9 +1024,9 @@ namespace System.Reflection.Metadata
             get { return new AsyncMethodHandleCollection(this); }
         }
 
-        public ImportHandleCollection Imports
+        public ImportScopeCollection ImportScopes
         {
-            get { return new ImportHandleCollection(this); }
+            get { return new ImportScopeCollection(this); }
         }
 
         public CustomDebugInformationHandleCollection CustomDebugInformation

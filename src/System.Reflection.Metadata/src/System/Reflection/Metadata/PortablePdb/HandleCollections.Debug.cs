@@ -609,14 +609,14 @@ namespace System.Reflection.Metadata
         }
     }
 
-    public struct ImportHandleCollection : IReadOnlyCollection<ImportScopeHandle>
+    public struct ImportScopeCollection : IReadOnlyCollection<ImportScopeHandle>
     {
         private readonly MetadataReader reader;
 
         private readonly int _firstRowId;
         private readonly int _lastRowId;
 
-        internal ImportHandleCollection(MetadataReader reader)
+        internal ImportScopeCollection(MetadataReader reader)
         {
             Debug.Assert(reader != null);
             this.reader = reader;
