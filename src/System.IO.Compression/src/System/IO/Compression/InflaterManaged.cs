@@ -369,7 +369,7 @@ namespace System.IO.Compression
                             int blockLengthComplement = _blockLengthBuffer[2] + ((int)_blockLengthBuffer[3]) * 256;
 
                             // make sure complement matches
-                            if ((ushort)_blockLength != (ushort)(~blockLengthComplement))
+                            if ((ushort)_blockLength != unchecked((ushort)(~blockLengthComplement)))
                             {
                                 throw new InvalidDataException(SR.InvalidBlockLength);
                             }

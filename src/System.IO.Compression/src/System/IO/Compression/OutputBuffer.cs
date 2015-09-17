@@ -39,8 +39,8 @@ namespace System.IO.Compression
         {
             Debug.Assert(FreeBytes >= 2, "No enough space in output buffer!");
 
-            _byteBuffer[_pos++] = (byte)value;
-            _byteBuffer[_pos++] = (byte)(value >> 8);
+            _byteBuffer[_pos++] = unchecked((byte)value);
+            _byteBuffer[_pos++] = unchecked((byte)(value >> 8));
         }
 
         internal void WriteBits(int n, uint bits)

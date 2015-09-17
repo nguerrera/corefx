@@ -20,7 +20,7 @@ namespace System.Collections.Specialized
         /// </devdoc>
         public BitVector32(int data)
         {
-            _data = (uint)data;
+            _data = unchecked((uint)data);
         }
 
         /// <devdoc>
@@ -39,17 +39,17 @@ namespace System.Collections.Specialized
         {
             get
             {
-                return (_data & bit) == (uint)bit;
+                return (_data & bit) == unchecked((uint)bit);
             }
             set
             {
                 if (value)
                 {
-                    _data |= (uint)bit;
+                    _data |= unchecked((uint)bit);
                 }
                 else
                 {
-                    _data &= ~(uint)bit;
+                    _data &= ~unchecked((uint)bit);
                 }
             }
         }
@@ -61,7 +61,10 @@ namespace System.Collections.Specialized
         {
             get
             {
-                return (int)((_data & (uint)(section.Mask << section.Offset)) >> section.Offset);
+                unchecked
+                {
+                    return (int)((_data & (uint)(section.Mask << section.Offset)) >> section.Offset);
+                }
             }
             set
             {

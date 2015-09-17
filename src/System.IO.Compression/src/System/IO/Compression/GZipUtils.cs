@@ -86,10 +86,10 @@ namespace System.IO.Compression
 
         internal void WriteUInt32(byte[] b, uint value, int startIndex)
         {
-            b[startIndex] = (byte)value;
-            b[startIndex + 1] = (byte)(value >> 8);
-            b[startIndex + 2] = (byte)(value >> 16);
-            b[startIndex + 3] = (byte)(value >> 24);
+            b[startIndex] = unchecked((byte)value);
+            b[startIndex + 1] = unchecked((byte)(value >> 8));
+            b[startIndex + 2] = unchecked((byte)(value >> 16));
+            b[startIndex + 3] = unchecked((byte)(value >> 24));
         }
     }
 }

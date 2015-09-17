@@ -69,7 +69,7 @@ namespace System.IO.Compression
             output.WriteUInt16(len);
 
             // nlen
-            ushort onesComp = (ushort)(~(ushort)len);
+            ushort onesComp = unchecked((ushort)(~(ushort)len));
             output.WriteUInt16(onesComp);
         }
     }
